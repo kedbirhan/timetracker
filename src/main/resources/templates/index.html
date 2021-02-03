@@ -30,6 +30,17 @@
             </tbody>
                 </thead>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination" >
+                    <li class="page-item" th:classappend="${page_start == 1} ? 'disabled'"><a class="page-link"  th:href="@{'/page/' + ${page_start - 5}}">Previous</a></li>
+                    <li th:each="i: ${#numbers.sequence(page_start,page_start+4)}" th:class="page-item" th:classappend="${currentPage == i} ? 'active'">
+                        <a th:if= "${currentPage != i}" class="page-link" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                        <a class="page-link" th:unless="${currentPage != i}">[[${i}]]<span class="sr-only">(current)</span></a>
+
+                    </li>
+                    <li class="page-item" th:classappend="${page_start+5>totalPages}? 'disabled'"><a class="page-link"  th:href="@{'/page/' + ${page_start+5}}">Next</a></li>
+                </ul>
+            </nav>
         </div>
         <div class="col-md-6" id="timeList">
 
@@ -37,7 +48,7 @@
                 <thead>
                 <tr>
                     <th>hour</th>
-                    <th>what have you done</th>
+                    <th>what have you done today </th>
                     <th>how focused were you</th>
                     <th>Action</th>
                 </tr>

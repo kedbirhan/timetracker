@@ -30,7 +30,7 @@ public class TimeTrackerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		LOG.info("EXECUTING : command line runner");
-		for(int i=0; i< 100; i++){
+		for(int i=0; i<20; i++){
 //			dateTable = dateTabelRepository.save(dateTable);
 			List<TimeLogs> timeTabelList= new ArrayList<>();
 			DayTracker dateTable= DayTracker.builder()
