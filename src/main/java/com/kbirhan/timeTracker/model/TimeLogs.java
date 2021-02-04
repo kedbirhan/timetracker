@@ -2,6 +2,7 @@ package com.kbirhan.timeTracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kbirhan.timeTracker.dto.FocusLevel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "timetracker")
-@Builder(toBuilder = true)
+
 @AllArgsConstructor()
 @Setter()
 @Getter
@@ -29,9 +30,14 @@ public class TimeLogs implements Serializable {
     @JoinColumn(name="date_id", nullable = false)
 @JsonIgnore
     private DayTracker dateTable;
-@Size(max=500)
-    private String task;
-    private String distractions;
+//@Size(max=200)
+    private String taskStatusProgress;
+//    @Size(max=250)
+    private String taskAssigned;
+    @Size(max=50)
+private String focusLevel;
+
+
     private int timeVal;
 
     public TimeLogs() {

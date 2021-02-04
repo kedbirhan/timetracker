@@ -5,6 +5,8 @@ import com.kbirhan.timeTracker.model.TimeLogs;
 import com.kbirhan.timeTracker.repository.DateTabelRepository;
 import com.kbirhan.timeTracker.repository.TimeTableRepository;
 import com.kbirhan.timeTracker.service.DateService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @Controller
 public class homeController {
+    Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
     DateService dateService;
     @Autowired
@@ -24,6 +27,12 @@ public class homeController {
 
     @GetMapping("/")
     public String homePage(Model model){
+
+        return getPage(model,1);
+    }
+    //todo
+    @GetMapping("/appendNewDate")
+    public String addNewDate(Model model){
 
         return getPage(model,1);
     }

@@ -31,18 +31,16 @@ public class TimeTrackerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		LOG.info("EXECUTING : command line runner");
 		for(int i=0; i<20; i++){
-//			dateTable = dateTabelRepository.save(dateTable);
 			List<TimeLogs> timeTabelList= new ArrayList<>();
 			DayTracker dateTable= DayTracker.builder()
 					.localDate(LocalDate.now().minusDays(i)).build();
 			dateTable= dateTabelRepository.save(dateTable);
 			for(int j=1;j<12; j++){
-				TimeLogs.TimeLogsBuilder timeTabelBuilder= TimeLogs.builder();
-				timeTabelBuilder.task("task " + i ).distractions("HIGH").timeVal(j);
-
-				timeTabelBuilder.dateTable(dateTabelRepository.findById(dateTable.getId()).get());
-//			  timeTabelList.add(dateTabelRepository.save(timeTabelBuilder.build()));
-				timeTableRepository.save(timeTabelBuilder.build());
+				TimeLogs timeTabelBuilder= new TimeLogs();
+				timeTabelBuilder.setTaskAssigned("first Thirty minute task " + i );
+				timeTabelBuilder.setTaskStatusProgress("last Thirty minute task " + i );
+				timeTabelBuilder.setDateTable(dateTabelRepository.findById(dateTable.getId()).get());
+				timeTableRepository.save(timeTabelBuilder);
 			}
 
 
